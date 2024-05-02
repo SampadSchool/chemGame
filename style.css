@@ -92,7 +92,7 @@ body::-webkit-scrollbar{
     box-shadow: 0px 0px 21px lightskyblue;
     width: 20%;
     z-index: 10;
-    background: rgb(100, 100, 100);
+    background: rgb(100, 100, 100,0.7);
     border-radius: 25px;
     height: 95%;
 	display: flex;
