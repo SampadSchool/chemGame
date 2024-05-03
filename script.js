@@ -1,8 +1,7 @@
 let rotated = 0
 let gameStarted = 0
 let playerNum = 1
-let rounds = 0;
-let mistakes = 0;
+let currentPlayer = "noPlayesYet";
 
 const guessedPeriodicTable = [
 
@@ -240,13 +239,13 @@ for (let index = 103; index < 118; index++) {
 }
 }
 const showElement = (atomicNum,color)=>{
-    console.log(atomicNum);
+    // console.log(atomicNum);
     let element = periodicTable[atomicNum]
-    console.log(element);
+    // console.log(element);
     for (let index = 0; index < periodicTable.length; index++) {
         if(elementCards[index].getAttribute('atomicNumber') == atomicNum+1){
-            console.log("it findes element");
-            console.log(element);
+            // console.log("it findes element");
+            // console.log(element);
             elementCards[index].innerHTML="<span>"+(atomicNum+1)+"</span><h2>"+element.symbol+"</h2><p>"+element.name+"</p><p>"+element.mass+"</p>"
             elementCards[index].style.background = color;
             elementCards[index].style.color = "black";
@@ -315,39 +314,8 @@ const ShowHideLeaderBoard = ()=>{
         leaderBoard.style.left = "1%"
     }
 }
-const animateTable = ()=>{
-    let timer = 200;
-    let random1 = Math.floor(Math.random()*118);
-    let random2 = Math.floor(Math.random()*118);
-    let random3 = Math.floor(Math.random()*118);
-    let random4 = Math.floor(Math.random()*118);
-    let random5 = Math.floor(Math.random()*118);
-    let random6 = Math.floor(Math.random()*118);
-    elementCards[random1].style.background = "white";
-    setTimeout(()=>{
-        elementCards[random1].style.background = "rgb(53, 53, 53)";
-        elementCards[random2].style.background = "white";
-    },timer);
-    setTimeout(()=>{
-        elementCards[random2].style.background = "rgb(53, 53, 53)";
-        elementCards[random3].style.background = "white";
-    },timer+200);
-    setTimeout(()=>{
-        elementCards[random3].style.background = "rgb(53, 53, 53)";
-        elementCards[random4].style.background = "white";
-    },timer+400);
-    setTimeout(()=>{
-        elementCards[random4].style.background = "rgb(53, 53, 53)";
-        elementCards[random5].style.background = "white";
-    },timer+600);
-    setTimeout(()=>{
-        elementCards[random5].style.background = "rgb(53, 53, 53)";
-        elementCards[random6].style.background = "white";
-    },timer+800);
-    setTimeout(()=>{
-        elementCards[random6].style.background = "rgb(53, 53, 53)";
-    },timer+1000);
-}
+/*Update: AnimateTable Deleted */
+
 const FullGame = (name)=> {
     var playerAnswer = "";
     let AskedElement = Math.floor(Math.random()*118);
@@ -378,11 +346,11 @@ const FullGame = (name)=> {
         }
         else{
             Players[Players.findIndex(obj => obj.name === name)].score -= (Math.ceil((AskedElement-1)/2))
+            Players[Players.findIndex(obj => obj.name === name)].mistakes +=1;
             showElement(AskedElement,"red");
             console.log("mistaka")
             console.log("Your Answer: "+playerAnswer);
             console.log("Right Answer: "+periodicTable[AskedElement].symbol);
-            mistakes+=1;
             UpdateLeaderboard();
     }
     }, 500);
@@ -392,15 +360,30 @@ const FullGame = (name)=> {
 const StartNewGame = ()=>{
     HideAllElements();
     let playerName = window.prompt(":نام خود را وارد کنید","بازیکن "+playerNum)
-    playerNum++;
-    gameStarted = 1;
-    Players.push({name: playerName,score:0})
-    HideAllElements();
-    showHideControllPanel();
-    // for(let i=0; i<10; i++){
-    //     animateTable();
-    // }
-    FullGame(playerName);
+    let playerExists = false;
+    /*Update */
+    for (let i = 0; i < Players.length; i++) {
+        if(playerName == Players[i].name){
+            playerExists = true;
+            break;
+        }
+    }
+    if(playerExists){
+        if(Players[Players.findIndex(obj => obj.name === currentPlayer)].mistakes  >= 5){alert(currentPlayer+"پنج بار باخته و اخراج شده")}
+        else{HideAllElements();
+            FullGame(playerName)}
+        
+    }
+    else{
+        playerNum++;
+        gameStarted = 1;
+        Players.push({name: playerName,score:0,mistakes:0})
+        HideAllElements();
+        FullGame(playerName);
+    }
+    currentPlayer = playerName;
+    
+    /*update*/
 
 
 }
@@ -409,8 +392,8 @@ const Continue = ()=>{
         alert ("باید بازی جدید شروع کنی تا ادامش بدی")
     }
     else{
-        let prevName = Players[Players.length - 1].name;
-        FullGame(prevName)
+        if(Players[Players.findIndex(obj => obj.name === currentPlayer)].mistakes  >= 5){alert(currentPlayer+"پنج بار باخته و اخراج شده")}
+        else{FullGame(currentPlayer)}
     }
 }
 HideShowCP.onmouseover = ()=>{HideShowCP.style.transform = "rotateZ("+(rotated+=180)+"deg)"}
