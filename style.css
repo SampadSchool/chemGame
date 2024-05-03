@@ -89,9 +89,10 @@ body::-webkit-scrollbar{
     top: 3%;
     position: absolute;
 	transition: 0.5s;
-    box-shadow: 0px 0px 21px lightskyblue;
+    /*Update*/box-shadow: 0px 0px 21px rgb(175, 224, 255);
     width: 20%;
     z-index: 10;
+    backdrop-filter: blur(2px);
     background: rgb(100, 100, 100,0.7);
     border-radius: 25px;
     height: 95%;
@@ -99,6 +100,20 @@ body::-webkit-scrollbar{
 	flex-flow: row wrap;
 
 }
+#phoney-Elements{
+	border: 5px solid white;
+	width: 70%;
+	display: none;
+	justify-content: center;
+	height: 30%;
+	position: absolute;
+	
+	border-radius:.25rem;	
+	line-height:1.25;
+	flex-direction:column;
+	justify-content:center;
+}
+
 #leaderBoard{
 	left: -25%;
 	overflow: hidden;
@@ -109,6 +124,7 @@ body::-webkit-scrollbar{
 #leaderBoard::-webkit-scrollbar{
 	display: none;
 }
+
 #controllPanel{
     right: 0%;
 	justify-content: center;
@@ -242,6 +258,7 @@ main{
 	margin:auto;
 	max-width:45em;
 	display:flex;
+	justify-content: center;
 }
 
 #grid-container{
@@ -403,10 +420,46 @@ a:before{
 			font-size:.75em;	
 		}	
 }
-.timer {
-	position: fixed;
-	height: 25px;
-	margin: 0;
-	top: 0;
-	
+@media only screen and (max-width:90.5em){
+	/* GLOBAL STYLES */
+		
+	#grid-container{
+		display:none;
+	}
+	.Controlls{
+		box-shadow: none;
+		border: 1px solid rgb(175, 224, 255);
+		border-radius: none;
+		top: 70%;
+		width: 50%;
+		height: 30%;
+	}
+	#leaderBoard{
+		left: 0;
+		border-radius: 25px 0 0 25px;
+	}
+	.leaderName{
+		font-size: 25px;
+	}
+	.leaderScore{
+		font-size: 20px;
+	}
+	#controllPanel{
+		right: 0%;
+		border-radius: 0 25px 25px 0
+	}
+	#HideShowleaderBoardBtn{
+		display: none;
+	}
+	#HideShowCP{
+		display: none;
+	}
+	.panelButtons{
+		width: 90%;
+  		height: 25%;	
+		font-size: 30px;
+	}
+	#phoney-Elements{
+		display: flex;
+	}
 }
