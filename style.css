@@ -144,12 +144,13 @@ body::-webkit-scrollbar{
 }
 #title{
 	width: 85%;
-    height: 7%;
+    height: 17%;
     display: flex;
     justify-content: center;
     line-height: 180%;
     font-size: 25px;
     font-family: 'Vazir';
+    overflow:hidden;
 }
 .panelButtons{
 		border-radius: 20px;
