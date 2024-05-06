@@ -412,6 +412,18 @@ a:before{
 	}
 }
 
+@keyframes rotate {
+	0%{
+		transform: rotateY(0deg);
+	}
+	50%{
+		transform: rotateY(180deg);
+	}
+	100%{
+		transform: rotateY(0deg);
+	}
+}
+
 @media only screen and (min-width:102.5em){
 	/* GLOBAL STYLES */
 		
