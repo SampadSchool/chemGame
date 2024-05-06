@@ -315,6 +315,7 @@ const ShowHideLeaderBoard = () => {
     }
 }
 const FullGame = (name) => {
+    HideAllElements();
     var playerAnswer = "";
     let AskedElement = Math.floor(Math.random() * 118);
     //let ChoiceElement = Math.floor(Math.random()*4);
