@@ -339,7 +339,7 @@ const FullGame = (name) => {
         // console.log(AskedElement+1);
         if (playerAnswer.toLocaleLowerCase() == (periodicTable[AskedElement].symbol).toLocaleLowerCase() || playerAnswer == periodicTable[AskedElement].name) {
             guessedPeriodicTable.push(periodicTable[AskedElement]);
-            showElement(AskedElement, "limeGreen");
+            showElement(AskedElement, "rgb(0 255 130)");
             Players[Players.findIndex(obj => obj.name === name)].score += (AskedElement + 1);
             UpdateLeaderboard();
         }
@@ -386,7 +386,7 @@ const phoneGame = (name) => {
         // console.log(AskedElement+1);
         if (playerAnswer.toLocaleLowerCase() == (periodicTable[AskedElement].symbol).toLocaleLowerCase() || playerAnswer == periodicTable[AskedElement].name) {
             guessedPeriodicTable.push(periodicTable[AskedElement]);
-            showCard(AskedElement, "limeGreen");
+            showCard(AskedElement, "rgb(0 255 130)");
             Players[Players.findIndex(obj => obj.name === name)].score += (AskedElement + 1);
             UpdateLeaderboard();
         }
