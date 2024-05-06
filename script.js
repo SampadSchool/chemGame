@@ -366,10 +366,14 @@ const hideCard = (el) => {
 }
 const showCard = (element, color) => {
     let el = periodicTable[element]
+    phoneyElements.style.animation = "rotate 1.5s linear";
     phoneyElements.innerHTML = "<span>" + (element+1) + "</span><h2>" + el.symbol + "<h2><p>" + el.name + "</p><p>" + el.mass + "</p>"
     phoneyElements.style.backgroundColor = color
     phoneyElements.style.color = "black"
     phoneyElements.style.border = "5px solid black"
+    setTimeout(()=>{
+        phoneyElements.style.animation = "none";
+    },1500)
 }
 const phoneGame = (name) => {
     // alert("PhoneGame")
