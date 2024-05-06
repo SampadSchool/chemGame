@@ -100,14 +100,13 @@ body::-webkit-scrollbar{
 	flex-flow: row wrap;
 
 }
-#phoney-Elements{
+#phoneyElements{
 	border: 5px solid white;
 	width: 70%;
-	display: none;
 	justify-content: center;
+	display: none;
 	height: 30%;
 	position: absolute;
-	
 	border-radius:.25rem;	
 	line-height:1.25;
 	flex-direction:column;
@@ -459,7 +458,7 @@ a:before{
   		height: 25%;	
 		font-size: 30px;
 	}
-	#phoney-Elements{
+	#phoneyElements{
 		display: flex;
 	}
 }
