@@ -125,7 +125,7 @@ const periodicTable = [
     { symbol: 'Lv', name: 'لیورموریوم', mass: 293.0 },
     { symbol: 'Ts', name: 'تنسین', mass: 294.0 },
     { symbol: 'Og', name: 'اوگانسون', mass: 294.0 }
-  
+
 ];
 const Players = [
 
@@ -135,267 +135,344 @@ const Players = [
 const categoryLinks = document.querySelectorAll('ul li a');
 const elementCards = document.querySelectorAll('.element-card');
 categoryLinks.forEach((link) => {
-link.addEventListener('click', (e) => {
-    e.preventDefault();
-    const selectedCategory = e.target.getAttribute('data-category');
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const selectedCategory = e.target.getAttribute('data-category');
 
-    elementCards.forEach((card) => {
-        if (selectedCategory === 'all' || card.classList.contains(selectedCategory)) {
+        elementCards.forEach((card) => {
+            if (selectedCategory === 'all' || card.classList.contains(selectedCategory)) {
 
-            card.style.backgroundColor = getColorByCategory(selectedCategory);
-        } else {
+                card.style.backgroundColor = getColorByCategory(selectedCategory);
+            } else {
 
-            card.style.backgroundColor = '';
-        }
+                card.style.backgroundColor = '';
+            }
+        });
     });
 });
-});
 function getColorByCategory(category) {
-switch (category) {
-    case 'nao-metal':
-        return 'rgb(180, 210, 100, 0.200)';
-    case 'gas-nobre':
-        return 'hsl(202, 68%, 64%, 0.300)';
-    case 'metal-alcalino':
-        return 'rgb(245,200,100, 0.200)';
-    case 'metal-alcalino-terroso':
-        return 'rgb(240,230,90, 0.100)';
-    case 'semimetal':
-        return 'rgb(110,200,190, 0.300)';
-    case 'halogenio':
-        return 'rgb(170,225,255, 0.200)';
-    case 'outros-metais':
-        return 'rgb(190,210,210, 0.300)';
-    case 'metal-transicao':
-        return 'rgb(245,175,175, 0.300)';
-    case 'lantanideo':
-        return 'rgb(150,225,225, 0.300)';
-    case 'actinidio':
-        return 'rgb(230,190,220, 0.300)';
-    default:
-        return '';
-}
+    switch (category) {
+        case 'nao-metal':
+            return 'rgb(180, 210, 100, 0.200)';
+        case 'gas-nobre':
+            return 'hsl(202, 68%, 64%, 0.300)';
+        case 'metal-alcalino':
+            return 'rgb(245,200,100, 0.200)';
+        case 'metal-alcalino-terroso':
+            return 'rgb(240,230,90, 0.100)';
+        case 'semimetal':
+            return 'rgb(110,200,190, 0.300)';
+        case 'halogenio':
+            return 'rgb(170,225,255, 0.200)';
+        case 'outros-metais':
+            return 'rgb(190,210,210, 0.300)';
+        case 'metal-transicao':
+            return 'rgb(245,175,175, 0.300)';
+        case 'lantanideo':
+            return 'rgb(150,225,225, 0.300)';
+        case 'actinidio':
+            return 'rgb(230,190,220, 0.300)';
+        default:
+            return '';
+    }
 }
 
+/*PC Functions*/
+const ShowAllElements = () => {
+    for (let index = 0; index < 56; index++) {
+        const element = periodicTable[index];
+        elementCards[index].innerHTML = "<span>" + (index + 1) + "</span><h2>" + element.symbol + "</h2><p>" + element.name + "</p><p>" + element.mass + "</p>"
+        elementCards[index].setAttribute('atomicNumber', index + 1)
 
-const ShowAllElements = ()=>{
-for (let index = 0; index < 56; index++) {
-    const element = periodicTable[index];
-    elementCards[index].innerHTML="<span>"+(index+1)+"</span><h2>"+element.symbol+"</h2><p>"+element.name+"</p><p>"+element.mass+"</p>"
-    elementCards[index].setAttribute('atomicNumber', index+1)
-    
+    }
+    for (let index = 56; index < 71; index++) {
+        const element = periodicTable[index];
+        elementCards[index + 34].innerHTML = "<span>" + (index + 1) + "</span><h2>" + element.symbol + "</h2><p>" + element.name + "</p><p>" + element.mass + "</p>"
+        elementCards[index + 34].setAttribute('atomicNumber', index + 1)
+    }
+    for (let index = 71; index < 88; index++) {
+        const element = periodicTable[index];
+        elementCards[index - 14].innerHTML = "<span>" + (index + 1) + "</span><h2>" + element.symbol + "</h2><p>" + element.name + "</p><p>" + element.mass + "</p>"
+        elementCards[index - 14].setAttribute('atomicNumber', index + 1)
+    }
+    for (let index = 88; index < 103; index++) {
+        const element = periodicTable[index];
+        elementCards[index + 17].innerHTML = "<span>" + (index + 1) + "</span><h2>" + element.symbol + "</h2><p>" + element.name + "</p><p>" + element.mass + "</p>"
+        elementCards[index + 17].setAttribute('atomicNumber', index + 1)
+    }
+    for (let index = 103; index < 118; index++) {
+        const element = periodicTable[index];
+        elementCards[index - 28].innerHTML = "<span>" + (index + 1) + "</span><h2>" + element.symbol + "</h2><p>" + element.name + "</p><p>" + element.mass + "</p>"
+        elementCards[index - 28].setAttribute('atomicNumber', index + 1)
+    }
 }
-for (let index = 56; index < 71; index++) {
-    const element = periodicTable[index];
-    elementCards[index+34].innerHTML="<span>"+(index+1)+"</span><h2>"+element.symbol+"</h2><p>"+element.name+"</p><p>"+element.mass+"</p>"
-    elementCards[index+34].setAttribute('atomicNumber', index+1)
+const HideAllElements = () => {
+    for (let index = 0; index < 118; index++) {
+        elementCards[index].style.background = "rgb(53, 53, 53)";
+        elementCards[index].style.color = getColorByCategory(elementCards[index].className);
+
+    }
+    for (let index = 0; index < 56; index++) {
+
+        elementCards[index].innerHTML = "<span> </span><h2 >" + (index + 1) + "</h2><p>****</p><p>----</p>"
+
+    }
+    for (let index = 56; index < 71; index++) {
+
+        elementCards[index + 34].innerHTML = "<span> </span><h2 >" + (index + 1) + "</h2><p>****</p><p>----</p>"
+
+    }
+    for (let index = 71; index < 88; index++) {
+
+        elementCards[index - 14].innerHTML = "<span> </span><h2 >" + (index + 1) + "</h2><p>****</p><p>----</p>"
+
+    }
+    for (let index = 88; index < 103; index++) {
+
+        elementCards[index + 17].innerHTML = "<span> </span><h2 >" + (index + 1) + "</h2><p>****</p><p>----</p>"
+
+    }
+    for (let index = 103; index < 118; index++) {
+
+        elementCards[index - 28].innerHTML = "<span> </span><h2 >" + (index + 1) + "</h2><p>****</p><p>----</p>"
+
+    }
 }
-for (let index = 71; index < 88; index++) {
-    const element = periodicTable[index];
-    elementCards[index-14].innerHTML="<span>"+(index+1)+"</span><h2>"+element.symbol+"</h2><p>"+element.name+"</p><p>"+element.mass+"</p>"
-    elementCards[index-14].setAttribute('atomicNumber', index+1)
-}
-for (let index = 88; index < 103; index++) {
-    const element = periodicTable[index];
-    elementCards[index+17].innerHTML="<span>"+(index+1)+"</span><h2>"+element.symbol+"</h2><p>"+element.name+"</p><p>"+element.mass+"</p>"
-    elementCards[index+17].setAttribute('atomicNumber', index+1)
-}
-for (let index = 103; index < 118; index++) {
-    const element = periodicTable[index];
-    elementCards[index-28].innerHTML="<span>"+(index+1)+"</span><h2>"+element.symbol+"</h2><p>"+element.name+"</p><p>"+element.mass+"</p>"
-    elementCards[index-28].setAttribute('atomicNumber', index+1)
-}
-}
-const HideAllElements = ()=>{
-for (let index = 0; index < 118; index++) {
-    elementCards[index].style.background = "rgb(53, 53, 53)";
-    elementCards[index].style.color = getColorByCategory(elementCards[index].className);
-    
-}
-for (let index = 0; index < 56; index++) {
-    
-    elementCards[index].innerHTML="<span> </span><h2 >"+(index+1)+"</h2><p>****</p><p>----</p>"
-    
-}
-for (let index = 56; index < 71; index++) {
-    
-    elementCards[index+34].innerHTML="<span> </span><h2 >"+(index+1)+"</h2><p>****</p><p>----</p>"
-    
-}
-for (let index = 71; index < 88; index++) {
-    
-    elementCards[index-14].innerHTML="<span> </span><h2 >"+(index+1)+"</h2><p>****</p><p>----</p>"
-    
-}
-for (let index = 88; index < 103; index++) {
-    
-    elementCards[index+17].innerHTML="<span> </span><h2 >"+(index+1)+"</h2><p>****</p><p>----</p>"
-    
-}
-for (let index = 103; index < 118; index++) {
-    
-    elementCards[index-28].innerHTML="<span> </span><h2 >"+(index+1)+"</h2><p>****</p><p>----</p>"
-    
-}
-}
-const showElement = (atomicNum,color)=>{
+const showElement = (atomicNum, color) => {
     // console.log(atomicNum);
     let element = periodicTable[atomicNum]
     // console.log(element);
     for (let index = 0; index < periodicTable.length; index++) {
-        if(elementCards[index].getAttribute('atomicNumber') == atomicNum+1){
+        if (elementCards[index].getAttribute('atomicNumber') == atomicNum + 1) {
             // console.log("it findes element");
             // console.log(element);
-            elementCards[index].innerHTML="<span>"+(atomicNum+1)+"</span><h2>"+element.symbol+"</h2><p>"+element.name+"</p><p>"+element.mass+"</p>"
+            elementCards[index].innerHTML = "<span>" + (atomicNum + 1) + "</span><h2>" + element.symbol + "</h2><p>" + element.name + "</p><p>" + element.mass + "</p>"
             elementCards[index].style.background = color;
             elementCards[index].style.color = "black";
         }
-        
+
     }
 }
-const showHideControllPanel = ()=>{
-    if(controllPanel.style.right == 0 || controllPanel.style.right == "0%"){
+const showHideControllPanel = () => {
+    if (controllPanel.style.right == 0 || controllPanel.style.right == "0%") {
         controllPanel.style.right = "-20%"
-        HideShowCP.style.right =  "20%";
-        HideShowCP.style.transform = "rotateZ("+(rotated+=180)+"deg)"
+        HideShowCP.style.right = "20%";
+        HideShowCP.style.transform = "rotateZ(" + (rotated += 180) + "deg)"
     }
-    else{
+    else {
         controllPanel.style.right = "0%"
-        HideShowCP.style.right =  "0%";
-        HideShowCP.style.transform = "rotateZ("+(rotated+=180)+"deg)"
+        HideShowCP.style.right = "0%";
+        HideShowCP.style.transform = "rotateZ(" + (rotated += 180) + "deg)"
     }
 }
-const UpdateLeaderboard = ()=>{
+const UpdateLeaderboard = () => {
     leaderBoard.innerHTML = "";
     Players.sort((a, b) => a.score - b.score);
     Players.reverse();
-        for (let index = 0; index < Players.length; index++) {
-            const element = Players[index];
-            let item = document.createElement("div")
-            let itemName = document.createElement("div")
-            let itemScore = document.createElement("div")
-            if(index == 0){
-                item.style.border = "5px solid gold";
-                item.style.background = "rgb(255,215,0,0.4)";
-                itemName.style.color = "yellow";
-            }
-            else if(index == 1){
-                item.style.border = "5px solid silver";
-                item.style.background = "rgb(192,192,192,0.4)";
-            }
-            else if(index == 2){
-                item.style.border = "5px solid orangered";
-                item.style.background = "rgb(255,69,0,0.4)";
-                itemName.style.color = "darkred";
-            }
-            else{
-                item.style.border = "5px solid darkslategray";
-                item.style.background = "rgb(47,79,79,0.4)";
-                itemName.style.color = "deepskyblue";
-            }
-            itemName.innerHTML = element.name;
-            itemScore.innerHTML = element.score;
-            item.className = "leaderItem"
-            itemName.className = "leaderName"
-            itemScore.className = "leaderScore"
-            item.appendChild(itemName)
-            item.appendChild(itemScore)
-            leaderBoard.appendChild(item)
-
-            
+    for (let index = 0; index < Players.length; index++) {
+        const element = Players[index];
+        let item = document.createElement("div")
+        let itemName = document.createElement("div")
+        let itemScore = document.createElement("div")
+        if (index == 0) {
+            item.style.border = "5px solid gold";
+            item.style.background = "rgb(255,215,0,0.4)";
+            itemName.style.color = "yellow";
         }
+        else if (index == 1) {
+            item.style.border = "5px solid silver";
+            item.style.background = "rgb(192,192,192,0.4)";
+        }
+        else if (index == 2) {
+            item.style.border = "5px solid orangered";
+            item.style.background = "rgb(255,69,0,0.4)";
+            itemName.style.color = "darkred";
+        }
+        else {
+            item.style.border = "5px solid darkslategray";
+            item.style.background = "rgb(47,79,79,0.4)";
+            itemName.style.color = "deepskyblue";
+        }
+        itemName.innerHTML = element.name;
+        itemScore.innerHTML = element.score;
+        item.className = "leaderItem"
+        itemName.className = "leaderName"
+        itemScore.className = "leaderScore"
+        item.appendChild(itemName)
+        item.appendChild(itemScore)
+        leaderBoard.appendChild(item)
+
+
+    }
 }
-const ShowHideLeaderBoard = ()=>{
+const ShowHideLeaderBoard = () => {
     UpdateLeaderboard();
-    if(leaderBoard.style.left == "1%"){
+    if (leaderBoard.style.left == "1%") {
         leaderBoard.style.left = "-25%"
     }
-    else{
+    else {
         leaderBoard.style.left = "1%"
     }
 }
-/*Update: AnimateTable Deleted */
-
-const FullGame = (name)=> {
+const FullGame = (name) => {
     var playerAnswer = "";
-    let AskedElement = Math.floor(Math.random()*118);
+    let AskedElement = Math.floor(Math.random() * 118);
     //let ChoiceElement = Math.floor(Math.random()*4);
-    if(AskedElement >= 0 && AskedElement < 54){
+    if (AskedElement >= 0 && AskedElement < 54) {
         elementCards[AskedElement].style.background = "white";
     }
-    else if(AskedElement >53 && AskedElement < 71){
-        elementCards[AskedElement+34].style.background = "white";
+    else if (AskedElement > 53 && AskedElement < 71) {
+        elementCards[AskedElement + 34].style.background = "white";
     }
-    else if(AskedElement >70 && AskedElement < 88){
-        elementCards[AskedElement-14].style.background = "white";
+    else if (AskedElement > 70 && AskedElement < 88) {
+        elementCards[AskedElement - 14].style.background = "white";
     }
-    else if(AskedElement >87 && AskedElement < 103){
-        elementCards[AskedElement+17].style.background = "white";
+    else if (AskedElement > 87 && AskedElement < 103) {
+        elementCards[AskedElement + 17].style.background = "white";
     }
-    else if(AskedElement >102 && AskedElement < 118){
-        elementCards[AskedElement-28].style.background = "white";
+    else if (AskedElement > 102 && AskedElement < 118) {
+        elementCards[AskedElement - 28].style.background = "white";
     }
     setTimeout(() => {
         playerAnswer = window.prompt("نماد اتم را بگو: ");
         // console.log(AskedElement+1);
-        if(playerAnswer.toLocaleLowerCase() == (periodicTable[AskedElement].symbol).toLocaleLowerCase() || playerAnswer == periodicTable[AskedElement].name){
+        if (playerAnswer.toLocaleLowerCase() == (periodicTable[AskedElement].symbol).toLocaleLowerCase() || playerAnswer == periodicTable[AskedElement].name) {
             guessedPeriodicTable.push(periodicTable[AskedElement]);
-            showElement(AskedElement,"limeGreen");
-            Players[Players.findIndex(obj => obj.name === name)].score += (AskedElement+1);
+            showElement(AskedElement, "limeGreen");
+            Players[Players.findIndex(obj => obj.name === name)].score += (AskedElement + 1);
             UpdateLeaderboard();
         }
-        else{
-            Players[Players.findIndex(obj => obj.name === name)].score -= (Math.ceil((AskedElement-1)/2))
-            Players[Players.findIndex(obj => obj.name === name)].mistakes +=1;
-            showElement(AskedElement,"red");
+        else {
+            Players[Players.findIndex(obj => obj.name === name)].score -= (Math.ceil((AskedElement - 1) / 2))
+            Players[Players.findIndex(obj => obj.name === name)].mistakes += 1;
+            showElement(AskedElement, "red");
             console.log("mistaka")
-            console.log("Your Answer: "+playerAnswer);
-            console.log("Right Answer: "+periodicTable[AskedElement].symbol);
+            console.log("Your Answer: " + playerAnswer);
+            console.log("Right Answer: " + periodicTable[AskedElement].symbol);
             UpdateLeaderboard();
-    }
-    }, 500);
-    
-}
+        }
+    }, 1000);
 
-const StartNewGame = ()=>{
-    HideAllElements();
-    let playerName = window.prompt(":نام خود را وارد کنید","بازیکن "+playerNum)
+}
+/*PC Functions*/
+
+/*Phone Functions*/
+const hideCard = (el) => {
+    console.log(getColorByCategory(elementCards[el]));
+    phoneyElements.style.color = "white"
+    phoneyElements.style.border = "5px solid white"
+    phoneyElements.style.backgroundColor = "rgba(53,53,53)"
+}
+const showCard = (element, color) => {
+    let el = periodicTable[element]
+    phoneyElements.innerHTML = "<span>" + (element+1) + "</span><h2>" + el.symbol + "<h2><p>" + el.name + "</p><p>" + el.mass + "</p>"
+    phoneyElements.style.backgroundColor = color
+    phoneyElements.style.color = "black"
+    phoneyElements.style.border = "5px solid black"
+}
+const phoneGame = (name) => {
+    // alert("PhoneGame")
+    var playerAnswer = "";
+    let AskedElement = Math.floor(Math.random() * 118);
+    hideCard(AskedElement)
+    phoneyElements.innerHTML = "<span></span><h2>" + (AskedElement + 1) + "<h2><p></p><p></p>"
+    setTimeout(() => {
+        playerAnswer = window.prompt("نماد اتم را بگو: ");
+        // console.log(AskedElement+1);
+        if (playerAnswer.toLocaleLowerCase() == (periodicTable[AskedElement].symbol).toLocaleLowerCase() || playerAnswer == periodicTable[AskedElement].name) {
+            guessedPeriodicTable.push(periodicTable[AskedElement]);
+            showCard(AskedElement, "limeGreen");
+            Players[Players.findIndex(obj => obj.name === name)].score += (AskedElement + 1);
+            UpdateLeaderboard();
+        }
+        else {
+            Players[Players.findIndex(obj => obj.name === name)].score -= (Math.ceil((AskedElement - 1) / 2))
+            Players[Players.findIndex(obj => obj.name === name)].mistakes += 1;
+            showCard(AskedElement, "red");
+            console.log("mistaka")
+            console.log("Your Answer: " + playerAnswer);
+            console.log("Right Answer: " + periodicTable[AskedElement].symbol);
+            UpdateLeaderboard();
+        }
+    }, 1000);
+
+}
+/*Phone Functions*/
+const StartNewGame = () => {
+    const displayStyle = window.getComputedStyle(phoneyElements).getPropertyValue('display');
+    let playerName = window.prompt(":نام خود را وارد کنید", "بازیکن " + playerNum)
     let playerExists = false;
-    /*Update */
     for (let i = 0; i < Players.length; i++) {
-        if(playerName == Players[i].name){
+        if (playerName == Players[i].name) {
             playerExists = true;
             break;
         }
     }
-    if(playerExists){
-        if(Players[Players.findIndex(obj => obj.name === currentPlayer)].mistakes  >= 5){alert(currentPlayer+"پنج بار باخته و اخراج شده")}
-        else{HideAllElements();
-            FullGame(playerName)}
-        
-    }
-    else{
-        playerNum++;
-        gameStarted = 1;
-        Players.push({name: playerName,score:0,mistakes:0})
+    if (displayStyle === 'none') {
         HideAllElements();
-        FullGame(playerName);
+        // alert("PC")
+        if (playerExists) {
+            if (Players[Players.findIndex(obj => obj.name === currentPlayer)].mistakes >= 5) { alert(currentPlayer + "پنج بار باخته و اخراج شده") }
+            else {
+                HideAllElements();
+                FullGame(playerName)
+            }
+
+        }
+        else {
+            playerNum++;
+            gameStarted = 1;
+            Players.push({ name: playerName, score: 0, mistakes: 0 })
+            HideAllElements();
+            FullGame(playerName);
+        }
+        currentPlayer = playerName;
     }
-    currentPlayer = playerName;
-    
+    else if(displayStyle === 'flex') {
+        controllPanel.style.right = "0%"
+        // alert("PHONE")
+        if (playerExists) {
+            if (Players[Players.findIndex(obj => obj.name === currentPlayer)].mistakes >= 5) { alert(currentPlayer + "پنج بار باخته و اخراج شده") }
+            else {
+                phoneGame(playerName)
+            }
+
+        }
+        else {
+            playerNum++;
+            gameStarted = 1;
+            Players.push({ name: playerName, score: 0, mistakes: 0 })
+            phoneGame(playerName);
+        }
+        currentPlayer = playerName;
+    }
+
     /*update*/
 
 
 }
-const Continue = ()=>{
-    if(gameStarted == 0){
-        alert ("باید بازی جدید شروع کنی تا ادامش بدی")
+const Continue = () => {
+    const displayStyle = window.getComputedStyle(phoneyElements).getPropertyValue('display');
+    if(displayStyle === 'none'){
+        if (gameStarted == 0) {
+            alert("باید بازی جدید شروع کنی تا ادامش بدی")
+        }
+        else {
+            if (Players[Players.findIndex(obj => obj.name === currentPlayer)].mistakes >= 5) { alert(currentPlayer + "پنج بار باخته و اخراج شده") }
+            else { FullGame(currentPlayer) }
+        }
     }
-    else{
-        if(Players[Players.findIndex(obj => obj.name === currentPlayer)].mistakes  >= 5){alert(currentPlayer+"پنج بار باخته و اخراج شده")}
-        else{FullGame(currentPlayer)}
+    else if(displayStyle === 'flex'){
+        controllPanel.style.right = "0%"
+        if (gameStarted == 0) {
+            alert("باید بازی جدید شروع کنی تا ادامش بدی")
+        }
+        else {
+            if (Players[Players.findIndex(obj => obj.name === currentPlayer)].mistakes >= 5) { alert(currentPlayer + "پنج بار باخته و اخراج شده") }
+            else { phoneGame(currentPlayer) }
+        }
     }
 }
-HideShowCP.onmouseover = ()=>{HideShowCP.style.transform = "rotateZ("+(rotated+=180)+"deg)"}
-HideShowCP.onmouseout = ()=>{HideShowCP.style.transform = "rotateZ("+(rotated+=180)+"deg)"; if(String(rotated).length > 5){rotated = 0}}
+HideShowCP.onmouseover = () => { HideShowCP.style.transform = "rotateZ(" + (rotated += 180) + "deg)" }
+HideShowCP.onmouseout = () => { HideShowCP.style.transform = "rotateZ(" + (rotated += 180) + "deg)"; if (String(rotated).length > 5) { rotated = 0 } }
 
