@@ -335,7 +335,7 @@ const FullGame = (name) => {
         elementCards[AskedElement - 28].style.background = "white";
     }
     setTimeout(() => {
-        playerAnswer = window.prompt(":(برای لغو ایجاد بازیکن جدید نام یک بازیکن از لیست را وارد کنید)نماد اتم را بگو");
+        playerAnswer = window.prompt(":نماد اتم را بگو");
         // console.log(AskedElement+1);
         if (playerAnswer.toLocaleLowerCase() == (periodicTable[AskedElement].symbol).toLocaleLowerCase() || playerAnswer == periodicTable[AskedElement].name) {
             guessedPeriodicTable.push(periodicTable[AskedElement]);
@@ -382,7 +382,7 @@ const phoneGame = (name) => {
     hideCard(AskedElement)
     phoneyElements.innerHTML = "<span></span><h2>" + (AskedElement + 1) + "<h2><p></p><p></p>"
     setTimeout(() => {
-        playerAnswer = window.prompt(":(برای لغو ایجاد بازیکن جدید نام یک بازیکن از لیست را وارد کنید)نماد اتم را بگو");
+        playerAnswer = window.prompt(":نماد اتم را بگو");
         // console.log(AskedElement+1);
         if (playerAnswer.toLocaleLowerCase() == (periodicTable[AskedElement].symbol).toLocaleLowerCase() || playerAnswer == periodicTable[AskedElement].name) {
             guessedPeriodicTable.push(periodicTable[AskedElement]);
@@ -405,7 +405,7 @@ const phoneGame = (name) => {
 /*Phone Functions*/
 const StartNewGame = () => {
     const displayStyle = window.getComputedStyle(phoneyElements).getPropertyValue('display');
-    let playerName = window.prompt(":نام خود را وارد کنید", "بازیکن " + playerNum)
+    let playerName = window.prompt(":نام خود را وارد کنید (برای لغو ایجاد بازیکن جدید نام یک بازیکن از لیست را وارد کنید)", "بازیکن " + playerNum)
     let playerExists = false;
     for (let i = 0; i < Players.length; i++) {
         if (playerName == Players[i].name) {
