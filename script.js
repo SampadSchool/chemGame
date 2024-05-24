@@ -134,7 +134,7 @@ const Players = [
 
 spectrum = window.prompt("چند تا اتم اول رو میخوای حفظ کنی؟");
 
-if(spectrum<0 || spectrum>118 || typeof(spectrum) != 'number'){
+if(spectrum<0 || spectrum>118){
     spectrum = 118
 }
 
