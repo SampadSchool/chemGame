@@ -1,6 +1,7 @@
 let rotated = 0
 let gameStarted = 0
 let playerNum = 1
+let spectrum = 118;
 let currentPlayer = "noPlayesYet";
 
 const guessedPeriodicTable = [
@@ -131,6 +132,11 @@ const Players = [
 
 ]
 
+spectrum = window.prompt("چند تا اتم اول رو میخوای حفظ کنی؟");
+
+if(spectrum<0 || spectrum>118 || typeof(spectrum) != 'number'){
+    spectrum = 118
+}
 
 const categoryLinks = document.querySelectorAll('ul li a');
 const elementCards = document.querySelectorAll('.element-card');
@@ -315,10 +321,21 @@ const ShowHideLeaderBoard = () => {
     }
 }
 const FullGame = (name) => {
-    HideAllElements();
     var playerAnswer = "";
-    let AskedElement = Math.floor(Math.random() * 118);
-    //let ChoiceElement = Math.floor(Math.random()*4);
+    if(guessedPeriodicTable.length == spectrum){guessedPeriodicTable.splice(0,(spectrum-1))}
+    let exists = 12;
+    let AskedElement;
+    while (exists > 0){
+        AskedElement = Math.floor(Math.random() * spectrum);
+        exists = 0
+        for (const el of guessedPeriodicTable) {
+            if(AskedElement == el){
+                exists += 1;
+            }
+        }
+    }
+    guessedPeriodicTable.push(AskedElement)
+
     if (AskedElement >= 0 && AskedElement < 54) {
         elementCards[AskedElement].style.background = "white";
     }
@@ -338,7 +355,6 @@ const FullGame = (name) => {
         playerAnswer = window.prompt(":نماد اتم را بگو");
         // console.log(AskedElement+1);
         if (playerAnswer.toLocaleLowerCase() == (periodicTable[AskedElement].symbol).toLocaleLowerCase() || playerAnswer == periodicTable[AskedElement].name) {
-            guessedPeriodicTable.push(periodicTable[AskedElement]);
             showElement(AskedElement, "rgb(0 255 130)");
             Players[Players.findIndex(obj => obj.name === name)].score += (AskedElement + 1);
             UpdateLeaderboard();
@@ -376,16 +392,26 @@ const showCard = (element, color) => {
     },1500)
 }
 const phoneGame = (name) => {
-    // alert("PhoneGame")
     var playerAnswer = "";
-    let AskedElement = Math.floor(Math.random() * 118);
+    if(guessedPeriodicTable.length == spectrum){guessedPeriodicTable.splice(0,(spectrum-1))}
+    let exists = 12;
+    let AskedElement;
+    while (exists > 0){
+        AskedElement = Math.floor(Math.random() * spectrum);
+        exists = 0
+        for (const el of guessedPeriodicTable) {
+            if(AskedElement == el){
+                exists += 1;
+            }
+        }
+    }
+    guessedPeriodicTable.push(AskedElement)
     hideCard(AskedElement)
     phoneyElements.innerHTML = "<span></span><h2>" + (AskedElement + 1) + "<h2><p></p><p></p>"
     setTimeout(() => {
         playerAnswer = window.prompt(":نماد اتم را بگو");
         // console.log(AskedElement+1);
         if (playerAnswer.toLocaleLowerCase() == (periodicTable[AskedElement].symbol).toLocaleLowerCase() || playerAnswer == periodicTable[AskedElement].name) {
-            guessedPeriodicTable.push(periodicTable[AskedElement]);
             showCard(AskedElement, "rgb(0 255 130)");
             Players[Players.findIndex(obj => obj.name === name)].score += (AskedElement + 1);
             UpdateLeaderboard();
